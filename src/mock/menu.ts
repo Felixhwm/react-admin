@@ -46,7 +46,7 @@ const data = [
       {
         id: 43,
         name: '异步表格',
-        route: '/table/base'
+        route: '/table/async'
       },
       {
         id: 44,

@@ -52,8 +52,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "build": "react-app-rewired build --scripts-version react-scripts-ts",
+    "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts"
   },
   "devDependencies": {
     "@types/antd": "^1.0.0",
