@@ -5,13 +5,15 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import Todo from './store'
 import { Provider } from 'mobx-react'
+import './mock'
 
 ReactDOM.render(
   <Provider todo={Todo}>
-    <App title="Welcome to react"/>
+    <App/>
   </Provider>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
+
 
 
