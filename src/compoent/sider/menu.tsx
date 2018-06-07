@@ -15,32 +15,35 @@ interface Iprops {
   [propName: string]: any
 }
 
-export default class App extends React.Component<Iprops> {
-  public render() {
-    const { data, rootpath } = this.props
-    return (
-      <Menu {...this.props}>
+export default ({data, rootpath, ...props}: Iprops) => 
+  <Menu {...props}>
+    {
+      data && data.map((item: Iitem) => 
+      item.children? 
+      <Menu.SubMenu
+        key={rootpath + item.route }
+        title={
+          <span>
+            { item.icon && <Icon type={item.icon} />}
+            <span>{item.name}</span>
+          </span>
+        }>
         {
-          data && data.map((item: Iitem) => 
-          <Menu.SubMenu
-          key={rootpath + item.route }
-            title={
-              <span>
-                { item.icon && <Icon type={item.icon} />}
-                <span>{item.name}</span>
-              </span>
-            }
-          >
-            {
-              item.children && item.children.map((each: Iitem) => 
-                <Menu.Item
-                  key={rootpath + each.route }>
-                  <span>{ each.name }</span>
-              </Menu.Item>)
-            }
-          </Menu.SubMenu>)
+          item.children && item.children.map((each: Iitem) => 
+            <Menu.Item
+              key={rootpath + each.route }>
+              <span>{ each.name }</span>
+            </Menu.Item>
+          )
         }
-      </Menu>
-    )
-  }
-}
+      </Menu.SubMenu> :
+      <Menu.Item
+        key={rootpath + item.route }>
+        <span>
+        { item.icon && <Icon type={item.icon} />}
+          <span>{ item.name }</span>
+        </span>
+      </Menu.Item>
+      )
+    }
+  </Menu>

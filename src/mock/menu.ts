@@ -2,7 +2,7 @@ import * as Mock from 'mockjs'
 
 const data = [
   {
-    icon: 'index',
+    icon: 'home',
     id: 0,
     name: '首页',
     route: '/index'
@@ -20,13 +20,13 @@ const data = [
         route: '/ui/icon'
       }
     ],
-    icon: 'ui',
+    icon: 'scan',
     id: 1,
     name: 'UI',
     route: '/ui',
   },
   {
-    icon: 'animation',
+    icon: 'rocket',
     id: 3,
     name: '动画',
     route: '/animation'

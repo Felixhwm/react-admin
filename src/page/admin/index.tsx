@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Layout } from 'antd'
 import Sider from '../../compoent/sider'
+import Header from '../../compoent/header'
 import './index.less'
 
 export default class App extends React.Component {
@@ -9,7 +10,7 @@ export default class App extends React.Component {
       <Layout className="layout-top">
         <Sider/>
         <Layout style={{flexDirection: 'column'}}>
-            <Layout.Header/>
+            <Header/>
             <Layout.Content style={{ margin: '0 16px', overflow: 'initial' }}>
                 <div>
                   <h1>admin</h1>
