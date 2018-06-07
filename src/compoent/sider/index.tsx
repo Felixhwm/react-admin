@@ -2,12 +2,21 @@ import * as React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Layout } from 'antd'
 import Menu from './menu'
-import { getMenu } from '../../api'
+import { getMenu } from 'src/api'
 import './index.less'
 
-@inject('todo')
+interface IState {
+  menuList: any[],
+}
+
+interface IProps {
+  size?: any
+  tool?: any
+}
+
+@inject('size', 'tool')
 @observer
-export default class App extends React.Component<any> {
+export default class App extends React.Component<IProps,IState> {
   public state = {
     menuList: []
   }
@@ -18,19 +27,29 @@ export default class App extends React.Component<any> {
     })
   }
   public menuClickHandle = (e: any) => {
+    const { size, tool } = this.props
+    if (size.mobile) {
+      tool.toggleCollapse(true)
+    }
     console.log(e)
   }
+
   public componentDidMount() {
-    console.log(this.props.todo)
     this.initData()
   }
   public render() {
     const { menuList } = this.state
+    const { tool } = this.props
     return (
-      <Layout.Sider className="sider">
+      <Layout.Sider 
+        className="sider" 
+        trigger={null}
+        collapsible={true}
+        collapsed={tool.collapsed}
+        breakpoint="lg"
+        collapsedWidth="0">
         <div className="logo">
-          <img width="40" src="https://gw.alipayobjects.com/zos/rmsportal/tXlLQhLvkEelMstLyHiN.svg" alt=""/>
-          <img width="40" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" alt=""/>
+          <img width="40" src={require('src/style/imgs/react.svg')} alt=""/>
         </div>
         <Menu 
           data={menuList} 
